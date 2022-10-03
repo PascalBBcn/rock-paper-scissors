@@ -1,4 +1,6 @@
 
+// THIS IS THE ORIGINAL CODE USING CONSOLE INSTEAD OF A UI:
+
 // const playerSelection = "rock";
 // const computerSelection = getComputerChoice();
 // let playerScore = 0;
@@ -80,31 +82,42 @@ const computerSelection = getComputerChoice();
 let playerScore = 0;
 let computerScore = 0;
 
-// function game() {
-//     for (let roundNum = 0; roundNum < 5; roundNum++) {
-//         let results = playRound(prompt("rock, paper, or scissors?").toLowerCase(), getComputerChoice());
-//         console.log(roundNum);
-//         console.log(results); 
-//         }
-//     if (playerScore > computerScore) {
-//         console.log("You win!");
-//     } else if (playerScore < computerScore) {
-//         console.log("You lose!");
-//     } else {
-//         console.log("It's a tie.");
-//     }
-// }
-//     console.log(game());
-
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   
     button.addEventListener('click', () => {
-        
-    function playRound(playerSelection = button.id, computerSelection) {
+    gameResult.textContent = "";
+    function game() {
+            for (let roundNum = 0; roundNum < 40; roundNum++) {
+                let results = playRound(playerSelection = button.id, getComputerChoice());
+                console.log(results);
+                break;
+                }
+                if (playerScore === 5) {
+                    const gameResult = document.querySelector('#gameResult');
+                    gameResult.style.cssText = 'color: blue;';
+                    gameResult.textContent = "YOU WON THE GAME!";
+                    reset();    
+                } else if (computerScore === 5) {
+                    const gameResult = document.querySelector('#gameResult');
+                    gameResult.style.cssText = 'color: blue;';
+                    gameResult.textContent = "YOU LOST THE GAME!";
+                    reset();
+                }
+        }
+            game();
 
+    function reset() {
+        playerScore = 0;
+        computerScore = 0;
+        
+        
+    } 
+         
+    function playRound(playerSelection = button.id, computerSelection) {
         let result;
+       
         if (playerSelection === computerSelection) {
             result = "Tie"
         } else if (playerSelection === "rock" && computerSelection === "paper") {
@@ -133,12 +146,9 @@ buttons.forEach((button) => {
         return "You: " + playerSelection + " NPC: " + computerSelection + "  " + result + " PS: " + playerScore + " CS: " + computerScore;
     }
     
-    console.log(playRound(playerSelection, computerSelection));
+    
     });
 });
-
-//console.log(playRound(prompt("rock, paper, or scissors?").toLowerCase(), computerSelection));
- //console.log(playRound(playerSelection, computerSelection));
 
 
 function getComputerChoice() {
@@ -152,31 +162,5 @@ function getComputerChoice() {
         return "scissors"
     }
 }
-
-
-
-
-
-
-
-
-
-
-// const rockBtn = document.querySelector('#rockBtn');
-// rockBtn.addEventListener('click', () => {
-//     playerSelection === "rock";
-// });
-
-// const paperBtn = document.querySelector('#paperBtn');
-// paperBtn.addEventListener('click', () => {
-//     playerSelection === "paper";
-    
-// });
-
-// const scissorsBtn = document.querySelector('#scissorsBtn');
-// paperBtn.addEventListener('click', () => {
-//     playerSelection === "
-    
-// });
 
 
